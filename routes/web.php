@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/products', [ProductController::class, 'index']);
+
+Route::get('/account', [AccountController::class, 'create']);
+Route::post('/account', [AccountController::class, 'store']);
+Route::post('/', [AccountController::class, 'edit']);
+Route::post('/logout', [AccountController::class, 'destroy']);
+
+
