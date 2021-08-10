@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\SamePassword;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -28,7 +29,7 @@ class AccountController extends Controller
     {
         $attributes = request()->validate([
             'username' => ['required','min:3', 'max:255'],
-            'password' => ['required', 'min:7', 'max:255'],
+            'password' => ['required', 'min:7', 'max:255', new SamePassword],
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['required'],
             'facebook' => ['required', 'url'],
